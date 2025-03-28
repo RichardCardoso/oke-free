@@ -40,8 +40,8 @@ resource "oci_network_load_balancer_backend" "nlb_backend_http" {
   network_load_balancer_id = oci_network_load_balancer_network_load_balancer.nlb.id
   port                     = var.node_port_http
   depends_on               = [oci_network_load_balancer_backend_set.nlb_backend_set_http]
-  count                    = var.node_size
-  target_id                = data.oci_core_instances.instances.instances[count.index].id
+  for_each                 = { for idx in range(var.node_size) : idx => idx }
+  target_id                = data.oci_containerengine_node_pool.oke_node_pool.nodes[each.value].id
 }
 
 resource "oci_network_load_balancer_backend" "nlb_backend_https" {
@@ -49,8 +49,8 @@ resource "oci_network_load_balancer_backend" "nlb_backend_https" {
   network_load_balancer_id = oci_network_load_balancer_network_load_balancer.nlb.id
   port                     = var.node_port_https
   depends_on               = [oci_network_load_balancer_backend_set.nlb_backend_set_https]
-  count                    = var.node_size
-  target_id                = data.oci_core_instances.instances.instances[count.index].id
+  for_each                 = { for idx in range(var.node_size) : idx => idx }
+  target_id                = data.oci_containerengine_node_pool.oke_node_pool.nodes[each.value].id
 }
 
 resource "oci_network_load_balancer_listener" "nlb_listener_http" {
