@@ -24,6 +24,7 @@ tfplan
 
 # file with credentials
 env.sh
+env.bat
 
 # Directory for sensible files and external files: i.e. env.sh / deployment.yaml
 temp
