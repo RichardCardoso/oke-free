@@ -1,6 +1,9 @@
 module "compartment" {
   source                            = "./compartment"
   compartment_name                  = var.compartment_name
+
+  alert_email                             = var.alert_email
+  budget_amount                           = var.budget_amount
 }
 
 module "vcn" {

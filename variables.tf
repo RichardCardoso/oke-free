@@ -114,3 +114,11 @@ variable "user_ocid" {
 variable "oci_profile" {
   type    = string
 }
+
+variable "alert_email" {
+  type    = string
+}
+
+variable "budget_amount" {
+  type        = number
+}
